@@ -58,6 +58,8 @@ img {
   font-size: 1.4vw;
   max-width: 350px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
+  margin-bottom: 16px;
+  margin-top: 8px;
 }
 
 .feature .feature__buttons .button__play {
