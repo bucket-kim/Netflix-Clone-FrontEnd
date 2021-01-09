@@ -99,7 +99,7 @@ header {
 }
 
 .original__movies, .movies__container {
-  padding-left: 40px;
+  padding: 20px 40px;
   overflow-x: scroll;
   white-space: nowrap;
 }
@@ -112,9 +112,16 @@ header {
   margin-right: 12px;
   height: 250px;
   width: auto;
+  transition: ease-in-out .15s all;
 }
 
 .movies__container img {
   margin-right: 12px;
   width: 200px;
+  transition: ease-in-out .15s all;
+}
+
+.original__movies img:hover, .movies__container img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }

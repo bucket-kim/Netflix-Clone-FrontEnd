@@ -1,28 +1,42 @@
-
 window.onload = () => {
   getOriginals();
   getTrendingNow();
-  getTopRated(); 
+  getTopRated();
+  getGenres();
 };
 
 // fetching movie function
 
 const fetchMovies = (url, element_select, path_type) => {
   fetch(url)
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else { 
-      throw new Error("Error!")
-    }
-  })
-  .then((data) => {
-    showMovies(data, element_select, path_type);
-  })
-  .catch((error) => {
-    console.log(error);
-  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Error!")
+      }
+    })
+    .then((data) => {
+      showMovies(data, element_select, path_type);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 };
+
+const fetchMoviesBasedOnGenre = (genreId) => {
+  let url = "https://api.themoviedb.org/3/discover/movie?";
+	url += "api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
+	url += `&with_genres=${genreId}`;
+  return fetch(url)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Error!")
+      }
+    })
+}
 
 // showing movie function with 3 params
 const showMovies = (movies, element_select, path_type) => {
@@ -33,55 +47,75 @@ const showMovies = (movies, element_select, path_type) => {
   }
 };
 
-// Add movies to the front end
-
-// netflix original section
-const getOriginals = () => {
-  let url = "https://api.themoviedb.org/3/discover/movie?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
-  fetchMovies(url, ".original__movies", "poster_path");
-  
+// fetching different genres
+const getGenres = () => {
+  const url = "https://api.themoviedb.org/3/genre/movie/list?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US";
+  fetch(url)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Error!");
+      }
+    })
+    .then((data) => {
+      showMoviesGenres(data);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 };
 
-const addMovies = (movies) => {
-  // add image to movies original
-  let moviesEle = document.querySelector('.original__movies');
-  for (movie of movies.results) {
-    let image = `<img src="https://image.tmdb.org/t/p/original${movie.poster_path}" alt="">`;
-    moviesEle.innerHTML += image;
+const showMoviesGenres = (genres) => {
+  genres.genres.forEach((genre) => {
+    const movies = fetchMoviesBasedOnGenre(genre.id);
+    movies.then((movies) => {
+      showMovieBasedOnGenre(genre.name, movies);
+    }).catch((error) => {
+      console.log("no!!", error);
+    })
+  })
+};
+
+const showMovieBasedOnGenre = (genreName, movies) => {
+  let allMovies = document.querySelector(".movies");
+  let genreEl = document.createElement('div');
+  genreEl.classList.add('movies__header');
+  genreEl.innerHTML = `<h2>${genreName}</h2>`;
+  
+  let moviesEl = document.createElement('div');
+  moviesEl.classList.add('movies__container');
+  moviesEl.setAttribute('id', genreName);
+
+  for (let movie of movies.results) {
+    const imageElement = document.createElement('img');
+    imageElement.setAttribute('data-id', movie.id);
+    imageElement.src = `https://image.tmdb.org/t/p/original${movie["backdrop_path"]}`;
+    moviesEl.appendChild(imageElement);
   }
+
+  allMovies.appendChild(genreEl);
+  allMovies.appendChild(moviesEl);
+}
+
+// Add movies to the front end
+// netflix original section
+const getOriginals = () => {
+  const url = "https://api.themoviedb.org/3/discover/movie?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
+  fetchMovies(url, ".original__movies", "poster_path");
+
 };
 
 // trending section
 const getTrendingNow = () => {
-  let url = "https://api.themoviedb.org/3/trending/all/day?api_key=ea50658dff38598f9ee0db5955b8e2b4";
+  const url = "https://api.themoviedb.org/3/trending/all/day?api_key=ea50658dff38598f9ee0db5955b8e2b4";
   fetchMovies(url, "#trending", "backdrop_path");
-};
-
-
-const showTrending = (movies) => {
-  let moviesEle = document.querySelector('#trending');
-  for (movie of movies.results) {
-    let image = `<img src="https://image.tmdb.org/t/p/original${movie[backdrop_path]}" alt="">`;
-    moviesEle.innerHTML += image;
-  }
 };
 
 // top rated section
 const getTopRated = () => {
-  let url = "https://api.themoviedb.org/3/movie/top_rated?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US&page=1";
+  const url = "https://api.themoviedb.org/3/movie/top_rated?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US&page=1";
   fetchMovies(url, "#topRated", "backdrop_path");
-  
 };
-
-const showTopRated = (movies) => {
-  let moviesEle = document.querySelector('#topRated');
-  for (movie of movies.results) {
-    let image = `<img src="https://image.tmdb.org/t/p/original${movie[backdrop_path]}" alt="">`;
-    moviesEle.innerHTML += image;
-  }
-};
-
-
 
 // ea50658dff38598f9ee0db5955b8e2b4
-
