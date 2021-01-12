@@ -13,7 +13,7 @@ img {
   height: 400px;
   background-image: url('https://www.themoviedb.org/t/p/original/eNfNu9sJ2eVmMcbrKpgEovPoyB8.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   padding-left: 36px;
   display: flex;
   flex-direction: column;
@@ -49,12 +49,12 @@ img {
 }
 
 .feature__description {
-  font-weight: 400;
-  font-size: 1.4vw;
-  max-width: 350px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
-  margin-bottom: 16px;
-  margin-top: 8px;
+  width: 45rem;
+  line-height: 1.3;
+  padding-top: 1rem;
+  font-size: .8rem;
+  max-width: 360px;
+  height: 80px;
 }
 
 .feature .feature__buttons .button__play {
@@ -124,4 +124,26 @@ header {
 .original__movies img:hover, .movies__container img:hover {
   transform: scale(1.1);
   cursor: pointer;
+}
+
+.modal-body iframe {
+  width: 100%;
+}
+
+.modal-content {
+  background-color: black;
+}
+
+span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  color: white;
+}
+
+.close:hover {
+  color: white;
 }
