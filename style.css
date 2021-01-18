@@ -147,3 +147,32 @@ span {
 .close:hover {
   color: white;
 }
+
+.profile {
+  position: relative;
+}
+
+.profile:hover .dropdown{
+  display: block;
+}
+
+.dropdown {
+  background-color: black;
+  padding: 8px;
+  border: 8px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 150px;
+  display: none;
+}
+
+.dropdown span {
+  color: white;
+}
+
+.dropdown span:hover {
+  text-decoration: none;
+  color: #b3b3b3;
+  cursor: pointer;
+}
