@@ -6,6 +6,10 @@ body {
   align-items: center;
 }
 
+.registered-alert {
+  display: none;
+}
+
 .background-wrapper {
   position: absolute;
   bottom: 0;
@@ -68,4 +72,13 @@ button {
 
 .form-check {
   margin-top: 12px;
+}
+
+.signup {
+  padding-top: 20px;
+  color: #828282;
+}
+
+.signup a {
+  color: white;
 }
