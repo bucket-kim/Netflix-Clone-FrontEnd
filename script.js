@@ -3,7 +3,30 @@ window.onload = () => {
   getTrendingNow();
   getTopRated();
   getGenres();
+  getWishList();
 };
+
+const getWishList = () => {
+  fetch("http://localhost:3000/wishlist", {
+    headers: {
+      authorization: `${localStorage.getItem('token')}`
+    }
+  })
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Error!")
+    }
+  })
+  .then((data) => {
+    console.log(data)
+  })
+  .catch((error) => {
+    logOut();
+    console.log(error)
+  })
+}
 
 async function getMovieTrailer(id) {
   let url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US`;
