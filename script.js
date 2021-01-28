@@ -1,3 +1,5 @@
+let apiUrl = process.env.API_URL || 'http://localhost:3000';
+
 window.onload = () => {
   getOriginals();
   getTrendingNow();
@@ -7,7 +9,7 @@ window.onload = () => {
 };
 
 const getWishList = () => {
-  fetch("http://localhost:3000/wishlist", {
+  fetch(`${apiUrl}/wishlist`, {
     headers: {
       authorization: `${localStorage.getItem('token')}`
     }

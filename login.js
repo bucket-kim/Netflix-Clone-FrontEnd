@@ -1,5 +1,5 @@
 let loginForm = document.getElementById('loginForm');
-let apiUrl = 'http://localhost:3000';
+let apiUrl = process.env.API_URL || 'http://localhost:3000';
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
