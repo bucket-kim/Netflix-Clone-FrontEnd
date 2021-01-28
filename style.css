@@ -121,6 +121,7 @@ header {
   transition: ease-in-out .15s all;
 }
 
+
 .original__movies img:hover, .movies__container img:hover {
   transform: scale(1.1);
   cursor: pointer;

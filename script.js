@@ -232,6 +232,3 @@ const getGenres = () => {
     })
 };
 
-
-
-// ea50658dff38598f9ee0db5955b8e2b4
