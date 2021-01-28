@@ -20,7 +20,7 @@ const getWishList = () => {
     }
   })
   .then((data) => {
-    console.log(data)
+    showMovies(data, "#wishlist", "backdrop_path")
   })
   .catch((error) => {
     logOut();
