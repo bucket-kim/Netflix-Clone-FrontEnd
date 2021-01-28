@@ -1,5 +1,8 @@
 let loginForm = document.getElementById('loginForm');
-let apiUrl = process.env.API_URL || 'http://localhost:3000';
+let apiUrl = 'http://localhost:3000';
+if (location.href.indexOf("netlify") != -1) {
+  apiUrl = "https://netflix-clone-backend-bk.herokuapp.com";
+}
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
