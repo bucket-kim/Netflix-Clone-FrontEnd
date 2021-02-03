@@ -34,7 +34,7 @@ const getWishList = () => {
 }
 
 async function getMovieTrailer(id) {
-  let url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US`;
+  let url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=d3d2e47352133a68c46a8b0f503167f0&language=en-US`;
   return await fetch(url)
     .then((response) => {
       if (response.ok) {
@@ -46,7 +46,7 @@ async function getMovieTrailer(id) {
 };
 
 async function getTitle(id) {
-  let url = `https://api.themoviedb.org/3/movie/${id}?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US
+  let url = `https://api.themoviedb.org/3/movie/${id}?api_key=d3d2e47352133a68c46a8b0f503167f0&language=en-US
   `;
   return await fetch(url)
     .then((response) => {
@@ -129,7 +129,7 @@ const fetchMovies = (url, element_select, path_type) => {
 
 const fetchMoviesGenreBased = (genreId) => {
   let url = "https://api.themoviedb.org/3/discover/movie?";
-  url += "api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
+  url += "api_key=d3d2e47352133a68c46a8b0f503167f0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
   url += `&with_genres=${genreId}`
   return fetch(url)
     .then((response) => {
@@ -159,20 +159,20 @@ const showMovies = (movies, element_select, path_type) => {
 // Add movies to the front end
 // netflix original section
 const getOriginals = () => {
-  const url = "https://api.themoviedb.org/3/discover/movie?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
+  const url = "https://api.themoviedb.org/3/discover/movie?api_key=d3d2e47352133a68c46a8b0f503167f0&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
   fetchMovies(url, ".original__movies", "poster_path");
 
 };
 
 // trending section
 const getTrendingNow = () => {
-  const url = "https://api.themoviedb.org/3/trending/all/day?api_key=ea50658dff38598f9ee0db5955b8e2b4";
+  const url = "https://api.themoviedb.org/3/trending/all/day?api_key=d3d2e47352133a68c46a8b0f503167f0";
   fetchMovies(url, "#trending", "backdrop_path");
 };
 
 // top rated section
 const getTopRated = () => {
-  const url = "https://api.themoviedb.org/3/movie/top_rated?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US&page=1";
+  const url = "https://api.themoviedb.org/3/movie/top_rated?api_key=d3d2e47352133a68c46a8b0f503167f0&language=en-US&page=1";
   fetchMovies(url, "#topRated", "backdrop_path");
 };
 
@@ -220,7 +220,7 @@ const showMovieBasedOnGenre = (genre, movies) => {
 }
 
 const getGenres = () => {
-  const url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=ea50658dff38598f9ee0db5955b8e2b4&language=en-US';
+  const url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=d3d2e47352133a68c46a8b0f503167f0&language=en-US';
   fetch(url)
     .then((response) => {
       if (response.ok) {
